@@ -11,17 +11,16 @@ public class MainController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public void login(@RequestBody User info) {
+    public boolean login(@RequestBody User info) {
         // Check the user in db or not: yes return 200, no return 404
         // test user info
         System.out.println(info.username);
         System.out.println(info.password);
-
-        boolean check;
         if (UserDao.checkLogin(info.username, info.password)) {
-            check = true;
+            return true;
+
         }else{
-            check = false;
+            return false;
         }
     }
 }
