@@ -22,7 +22,7 @@ function loginHelper (username, password) {
         password: password,
     }).then(function (response) {
         console.log(response);
-        if (response.status === 200) {
+        if (response.data) {
             window.location.href = "home.html";
         }
     }).catch(function (error) {
