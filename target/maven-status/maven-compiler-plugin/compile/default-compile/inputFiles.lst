@@ -1,0 +1,17 @@
+/home/vagrant/project/src/main/java/config/MyMvcConfig.java
+/home/vagrant/project/src/main/java/com/team20/Wrapper/User.java
+/home/vagrant/project/src/main/java/com/team20/Model/ui/UI.java
+/home/vagrant/project/src/main/java/com/team20/Model/gameMechanics/Map.java
+/home/vagrant/project/src/main/java/controller/LoginController.java
+/home/vagrant/project/src/main/java/config/LoginHandlerIntercepter.java
+/home/vagrant/project/src/main/java/com/team20/Model/gameMechanics/Cell.java
+/home/vagrant/project/src/main/java/com/team20/Config/OpenBrowserConfig.java
+/home/vagrant/project/src/main/java/com/team20/Model/gameMechanics/Obstacle.java
+/home/vagrant/project/src/main/java/com/team20/utils/JdbcUtiles.java
+/home/vagrant/project/src/main/java/com/team20/Model/App.java
+/home/vagrant/project/src/main/java/controller/DashboardController.java
+/home/vagrant/project/src/main/java/com/team20/Model/gameMechanics/Game.java
+/home/vagrant/project/src/main/java/com/team20/Application.java
+/home/vagrant/project/src/main/java/com/team20/Controller/MainController.java
+/home/vagrant/project/src/main/java/com/team20/Model/gameMechanics/Car.java
+/home/vagrant/project/src/main/java/com/team20/dao/UserDao.java
