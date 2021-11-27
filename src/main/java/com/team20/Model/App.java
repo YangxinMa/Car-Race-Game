@@ -1,4 +1,5 @@
-package com.team20.Model.gameMechanics;
+package com.team20.Model;
+
 
 import com.team20.Model.ui.UI;
 
