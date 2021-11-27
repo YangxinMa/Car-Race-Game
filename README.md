@@ -18,7 +18,7 @@
 ```
 ### Game logic part
 ```
-    Need to use IntelliJ IDEA run src/main/java/com/team20/Model/App.java
+    Need to use IntelliJ IDEA to run src/main/java/com/team20/Model/App.java
 ```
 
 ## Login information
