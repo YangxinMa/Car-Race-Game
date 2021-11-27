@@ -1,6 +1,7 @@
 package com.team20.Controller;
 
 import com.team20.Wrapper.User;
+import com.team20.dao.UserDao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,13 @@ public class MainController {
         // test user info
         System.out.println(info.username);
         System.out.println(info.password);
+
+        boolean check;
+        if (UserDao.checkLogin(info.username, info.password)) {
+            check = true;
+        }else{
+            check = false;
+        }
     }
 }
 
