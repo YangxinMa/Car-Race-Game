@@ -1,0 +1,42 @@
+tr.hide-table-padding td {
+    padding: 0;
+}
+
+.expand-button {
+    position: relative;
+}
+
+.accordion-toggle .expand-button:after
+{
+    position: absolute;
+    left:.75rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: '-';
+}
+.accordion-toggle.collapsed .expand-button:after
+{
+    content: '+';
+}
+
+.start {
+    background-image: url("img/gameEntrance.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+    /*width: 300px;*/
+    /*height: 200px;*/
+    /*font-size: 2rem;*/
+}
+
+.btn {
+    background-color: hotpink;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 300px;
+    top: 50%;
+    left: 50%;
+    font-size: 40px;
+}
