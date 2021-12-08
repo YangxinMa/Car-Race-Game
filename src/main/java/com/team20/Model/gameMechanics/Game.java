@@ -5,7 +5,8 @@ public class Game {
     private Map map = new Map();
     private Car player;
     private Cell[][] board;
-
+    private final int oppositeNum = 5;
+    private final OppositeCar[] opposites = new OppositeCar[oppositeNum];
     public Game (){
         this.formUp();
     }
@@ -22,19 +23,24 @@ public class Game {
         return player;
     }
 
-    public void setPlayer(Car player) {
-        this.player = player;
-    }
-
     public Cell getBoardAt(int i, int j) {
         return board[i][j];
     }
 
+    public int getOppositeNum() {
+        return oppositeNum;
+    }
+    public boolean isOppositeOrNot(int row, int column){
+        for(int i = 0; i < oppositeNum; i++){
+            if(opposites[i].getRow() == row && opposites[i].getColumn() == column){
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean isGameLose(){return true;}
     public boolean CarCrash(){
         if(player.getColumn() == 0 || player.getColumn() == map.getWidth() - 1)
-            return false;
-        if(player.getRow() == 0 || player.getRow() == map.getHeight() - 1)
             return false;
         return true;
     }
@@ -68,6 +74,10 @@ public class Game {
         int startRow = map.getHeight() / 2;
         int startCol = map.getWidth() / 2;
         this.player = new Car(startRow, startCol);
+        for(int i = 0; i < oppositeNum; i++){
+            opposites[i] = new OppositeCar(this.map);
+        }
+
         for(int i = 0; i < height; i++)
         {
             for(int j = 0; j < width; j++)

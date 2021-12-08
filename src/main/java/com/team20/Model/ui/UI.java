@@ -5,6 +5,7 @@ import com.team20.Model.gameMechanics.Game;
 import java.util.Scanner;
 
 public class UI {
+    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     private final Game game = new Game();
@@ -20,9 +21,14 @@ public class UI {
                 }
                 else
                 {
-                    if(game.getBoardAt(i,j).getRow() == game.getPlayer().getRow() && game.getBoardAt(i,j).getColumn() == game.getPlayer().getColumn())
+                    if(game.getBoardAt(i,j).getRow() == game.getPlayer().getRow() &&
+                            game.getBoardAt(i,j).getColumn() == game.getPlayer().getColumn())
                     {
                         System.out.print(ANSI_YELLOW + "@ ");
+                    }
+                    else if(game.isOppositeOrNot(i,j))
+                    {
+                        System.out.print(ANSI_RED + "! ");
                     }
                     else
                     {
