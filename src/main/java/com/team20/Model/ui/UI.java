@@ -1,10 +1,11 @@
 package com.team20.Model.ui;
 
 import com.team20.Model.gameMechanics.Game;
-
+import java.util.Timer;
 import java.util.Scanner;
 
 public class UI {
+    public static final String ANSI_WHITE = "\u001B[37m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -29,6 +30,10 @@ public class UI {
                     else if(game.isOppositeOrNot(i,j))
                     {
                         System.out.print(ANSI_RED + "! ");
+                    }
+                    else if(game.getBoardAt(i,j).getRow() == game.getScore().getRow() &&
+                            game.getBoardAt(i,j).getColumn() == game.getScore().getColumn()){
+                        System.out.print(ANSI_WHITE + "$ ");
                     }
                     else
                     {

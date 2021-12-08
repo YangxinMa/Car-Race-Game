@@ -7,6 +7,7 @@ public class Game {
     private Cell[][] board;
     private final int oppositeNum = 5;
     private final OppositeCar[] opposites = new OppositeCar[oppositeNum];
+    private final Obstacle score = new Obstacle(1,1);
     public Game (){
         this.formUp();
     }
@@ -21,6 +22,10 @@ public class Game {
 
     public Car getPlayer() {
         return player;
+    }
+
+    public Obstacle getScore() {
+        return score;
     }
 
     public Cell getBoardAt(int i, int j) {
@@ -88,7 +93,7 @@ public class Game {
         for(int i = 0; i < oppositeNum; i++){
             opposites[i] = new OppositeCar(this.map);
         }
-
+        score.teleport(this.map);
         for(int i = 0; i < height; i++)
         {
             for(int j = 0; j < width; j++)
