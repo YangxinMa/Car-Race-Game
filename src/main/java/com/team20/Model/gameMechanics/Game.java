@@ -38,6 +38,17 @@ public class Game {
         }
         return false;
     }
+    public void moveOpposites(){
+        for(int i = 0; i < oppositeNum; i++){
+            opposites[i].forceOppositeCarMove();
+        }
+    }
+    public void restartOpposites(){
+        for(int i = 0; i < oppositeNum; i++){
+            if(opposites[i].getRow() == map.getHeight())
+                opposites[i].restart(map);
+        }
+    }
     public boolean isGameLose(){return true;}
     public boolean CarCrash(){
         if(player.getColumn() == 0 || player.getColumn() == map.getWidth() - 1)
@@ -91,6 +102,8 @@ public class Game {
 
     public void playGame(String s) {
         player.chooseNextMove(s);
+        moveOpposites();
+        restartOpposites();
     }
 
 

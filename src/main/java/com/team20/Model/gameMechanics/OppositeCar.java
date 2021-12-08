@@ -8,15 +8,15 @@ public class OppositeCar extends Cell{
         int i = 0;
         int j = 0;
         while(map.getMapAt(i, j)){
-//            i = (int) (Math.random() * height);
+            i = (int) (Math.random() * height);
             j = (int) (Math.random() * width);
         }
-        this.setRow(0);
+        this.setRow(i);
         this.setColumn(j);
 
     }
     public void forceOppositeCarMove(){
-        this.setColumn(this.getColumn() + 1);
+        this.setRow(this.getRow() + 1);
     }
     public void restart(Map map){
         if(this.getRow() == map.getHeight()){
