@@ -1,8 +1,8 @@
 package com.team20.Model.gameMechanics;
 
 public class Map {
-    private final int width = 30;
-    private final int height = 30;
+    private final int width = 11;
+    private final int height = 11;
     private final boolean[][] map = new boolean[height][width];
 
     public Map(){
