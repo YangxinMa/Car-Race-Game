@@ -8,8 +8,13 @@ public class Game {
     private final int oppositeNum = 5;
     private final OppositeCar[] opposites = new OppositeCar[oppositeNum];
     private final Obstacle score = new Obstacle(1,1);
+    private int point = 0;
     public Game (){
         this.formUp();
+    }
+
+    public int getPoint() {
+        return point;
     }
 
     public Map getMap() {
@@ -27,14 +32,10 @@ public class Game {
     public Obstacle getScore() {
         return score;
     }
-
     public Cell getBoardAt(int i, int j) {
         return board[i][j];
     }
 
-    public int getOppositeNum() {
-        return oppositeNum;
-    }
     public boolean isOppositeOrNot(int row, int column){
         for(int i = 0; i < oppositeNum; i++){
             if(opposites[i].getRow() == row && opposites[i].getColumn() == column){
@@ -54,10 +55,18 @@ public class Game {
                 opposites[i].restart(map);
         }
     }
-    public boolean isGameLose(){return true;}
+    public void pointGotten(){
+        if(player.getColumn() == score.getColumn() && player.getRow() == score.getRow()) {
+            this.point += score.getPoint();
+            score.teleport(map);
+        }
+    }
     public boolean CarCrash(){
         if(player.getColumn() == 0 || player.getColumn() == map.getWidth() - 1)
             return false;
+        else if(isOppositeOrNot(player.getRow(), player.getColumn())){
+            return false;
+        }
         return true;
     }
 
@@ -105,10 +114,12 @@ public class Game {
         }
     }
 
+
     public void playGame(String s) {
         player.chooseNextMove(s);
         moveOpposites();
         restartOpposites();
+        pointGotten();
     }
 
 
