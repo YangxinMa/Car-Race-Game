@@ -1,13 +1,17 @@
 package com.team20.Model.ui;
 
 import com.team20.Model.gameMechanics.Game;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Scanner;
 
 public class UI {
+    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     private final Game game = new Game();
+    private final Scanner input = new Scanner(System.in);
     public void printMap()
     {
         for(int i = 0; i < game.getMap().getHeight(); i++)
@@ -20,9 +24,24 @@ public class UI {
                 }
                 else
                 {
-                    if(game.getBoardAt(i,j).getRow() == game.getPlayer().getRow() && game.getBoardAt(i,j).getColumn() == game.getPlayer().getColumn())
+                    if(game.getBoardAt(i,j).getRow() == game.getPlayer().getRow() &&
+                            game.getBoardAt(i,j).getColumn() == game.getPlayer().getColumn())
                     {
-                        System.out.print(ANSI_YELLOW + "@ ");
+                        if(!game.CarCrash()){
+                            System.out.print(ANSI_YELLOW + "X ");
+                        }
+                        else{
+                            System.out.print(ANSI_YELLOW + "@ ");
+                        }
+
+                    }
+                    else if(game.isOppositeOrNot(i,j))
+                    {
+                        System.out.print(ANSI_RED + "! ");
+                    }
+                    else if(game.getBoardAt(i,j).getRow() == game.getScore().getRow() &&
+                            game.getBoardAt(i,j).getColumn() == game.getScore().getColumn()){
+                        System.out.print(ANSI_WHITE + "$ ");
                     }
                     else
                     {
@@ -50,10 +69,10 @@ public class UI {
         return false;
     }
     public void interFace(){
-        Scanner input = new Scanner(System.in);
+
         do
         {
-            //this.model.getMaze().printMaze();
+            System.out.println("You have got " + game.getPoint() + " Points So Far!!");
             this.printMap();
             System.out.print("Enter your move [WASD?]: ");
             String operation = input.nextLine();
@@ -75,6 +94,11 @@ public class UI {
             game.playGame(operation);
         }while (game.CarCrash());
 
+        System.out.println("I'm sorry, you have crashed!");
+        System.out.println(" ");
+        this.printMap();
+        System.out.println("Your Final Score is " + game.getPoint() + " Points!!");
+        System.out.println("GAME OVER; please try again.");
 
 
     }
