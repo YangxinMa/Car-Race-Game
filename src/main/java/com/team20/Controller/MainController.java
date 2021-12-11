@@ -13,7 +13,7 @@ public class MainController {
     private static List<GameWrapper> games = new ArrayList<>();
     private static int gameID = 1; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
-
+    private List<Game> backGames = new ArrayList<>();
 
 //    @PostMapping("/login")
 //    @ResponseStatus(HttpStatus.OK)
@@ -69,6 +69,7 @@ public class MainController {
     @ResponseStatus(HttpStatus.CREATED)
     public GameWrapper createGame() {
         Game game = new Game();
+        backGames.add(game);
         GameWrapper newGame = GameWrapper.getGame(game, gameID);
         gameID++;
         games.add(newGame);
@@ -100,25 +101,46 @@ public class MainController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
+
+
+        String movement = " ";
+        boolean carsMove = false;
         switch (move) {
             case "MOVE_UP": {
-
+                movement = "W";
+                break;
             }
             case "MOVE_DOWN": {
-
+                movement = "S";
+                break;
             }
             case "MOVE_LEFT": {
+                movement = "A";
+                break;
 
             }
             case "MOVE_RIGHT": {
+                movement = "D";
+                break;
 
             }
             case "MOVE_CARS": {
+                movement = "m";
+                carsMove = true;
+                break;
 
             }
             default:
                 throw new Exception();
         }
+        if(carsMove){
+            backGames.get(id).moveOpposites();
+            backGames.get(id).restartOpposites();
+        }
+        else
+            backGames.get(id).playGame(movement);
+        GameWrapper temp = GameWrapper.getGame(backGames.get(id), id + 1);
+        games.set(id, temp);
 
     }
 
