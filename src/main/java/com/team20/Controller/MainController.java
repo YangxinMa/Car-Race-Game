@@ -1,27 +1,32 @@
 package com.team20.Controller;
 
-import com.team20.Wrapper.User;
-import com.team20.dao.UserDao;
+import com.team20.Wrapper.RecordWrapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class MainController {
+    private static List<RecordWrapper> users = new ArrayList<>();
 
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public boolean login(@RequestBody User info) {
-        // Check the user in db or not: yes return 200, no return 404
-        // test user info
-        System.out.println(info.username);
-        System.out.println(info.password);
-        if (UserDao.checkLogin(info.username, info.password)) {
-            return true;
-
-        }else{
-            return false;
-        }
-    }
+//    @PostMapping("/login")
+//    @ResponseStatus(HttpStatus.OK)
+//    public String login(@RequestBody String username) {
+//        for (RecordWrapper user : users) {
+//            if (user.user.equals(username)) {
+//                return username;
+//            }
+//        }
+//        RecordWrapper newUser = new RecordWrapper(username);
+//        users.add(newUser);
+//        return username;
+//    }
+//
+//    @GetMapping("/rank")
+//    public List<RecordWrapper> getRank(){
+//        return users;
+//    }
 }
 
