@@ -124,9 +124,11 @@ function sendMove(direction) {
 }
 
 function stopAndUploadRecord() {
-    axios.post('/game/stop', gameObj.user).then(function (response) {
-        gameObj.game = response.data;
+    axios.post('/game/' + gameObj.game.gameId + "/stop", gameObj.user).then(function (response) {
+        console.log(response);
+        gameObj.game = null;
         gameObj.moveFlag = false;
+        window.location.href = "index.html";
     }).catch(function (error) {
         console.log(error);
     });

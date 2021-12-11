@@ -9,4 +9,12 @@ public class GameWrapper {
     public boolean stopByUser;
     public int currentScore;
 
+    public BoardWrapper board;
+
+    public static GameWrapper getGame(int id) {
+        GameWrapper wrapper = new GameWrapper();
+        wrapper.gameId = id;
+
+        return wrapper;
+    }
 }
