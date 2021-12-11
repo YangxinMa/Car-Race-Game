@@ -1,5 +1,6 @@
 package com.team20.Controller;
 
+import com.team20.GameLogic.gameMechanics.Game;
 import com.team20.TempSql.Record;
 import com.team20.Wrapper.*;
 import org.springframework.http.HttpStatus;
@@ -67,7 +68,8 @@ public class MainController {
     @PostMapping("/game")
     @ResponseStatus(HttpStatus.CREATED)
     public GameWrapper createGame() {
-        GameWrapper newGame = GameWrapper.getGame(gameID);
+        Game game = new Game();
+        GameWrapper newGame = GameWrapper.getGame(game, gameID);
         gameID++;
         games.add(newGame);
         return newGame;
