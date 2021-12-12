@@ -207,16 +207,12 @@ public class MainController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void stopGameAndUploadRecord(@PathVariable("id") int id,
                                         @RequestBody String username) {
+        username = username.substring(0, username.length()-1);
         for (GameWrapper game : games) {
-            if (game.gameId == id) {
+            if (game.gameId == id - 1) {
                 game.stopByUser = false;
-                for (Record user : users) {
-                    if (user.user.equals(username)) {
-                        user.score = game.currentScore;
-                        // Todo: bug: rank needs to be update too.
-                        rankDao.save(username, (float) backGames.get(id-1).getPoint());
-                    }
-                }
+                rankDao.save(username, (float) backGames.get(id-1).getPoint());
+
             }
         }
     }

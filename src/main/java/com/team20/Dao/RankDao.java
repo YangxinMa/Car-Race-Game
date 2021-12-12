@@ -88,7 +88,7 @@ public class RankDao {
             st = conn.createStatement();
 
             st.execute("use test");
-            String sql = "select * from ranks order by score";
+            String sql = "select * from ranks order by score desc";
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 map.put(rs.getString("username"), rs.getFloat("score"));
