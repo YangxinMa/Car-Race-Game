@@ -32,7 +32,7 @@ public class RankDao {
 
             st.execute("CREATE TABLE users( username VARCHAR(50) NOT NULL, score FLOAT NOT NULL)");
 
-            st.execute("ALTER TABLE contacts ADD PRIMARY KEY (id)");
+            st.execute("ALTER TABLE users ADD PRIMARY KEY (username)");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
