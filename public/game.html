@@ -15,11 +15,19 @@
 <body>
     <div id="gameApp">
         <h4>Welcome, <strong>{{user}}</strong></h4>
+        <button type="button" onclick="{location.href='index.html'}">Log out</button>
 
         <button id="newGame" type="button" v-on:click="newGame()">New Game</button>
 
-        <p v-if="game != null">
-            Score: {{game.currentScore}}</p>
+        <h4 v-if="game != null">
+            Score: {{game.currentScore}}</h4>
+
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(1)">
+            Speed: 1x</button>
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(2)">
+            Speed: 2x</button>
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(4)">
+            Speed: 4x</button>
 
         <div v-if="board != null">
             <table>
@@ -45,7 +53,7 @@
             </table>
             <h1 v-if="game.isGameLost">YOU LOST! Try again?</h1>
             <button v-if="game != null" type="button" v-on:click="endGame()">
-                Stop game and upload your record
+                Upload your record
             </button>
         </div>
 

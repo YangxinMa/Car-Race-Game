@@ -167,7 +167,7 @@ public class Game {
         switch (this.moveOrQuit(s)) {
             case 1:
                 player.chooseNextMove(s);
-                moveOpposites();
+//                moveOpposites();
                 restartOpposites();
                 pointGotten();
                 break;
