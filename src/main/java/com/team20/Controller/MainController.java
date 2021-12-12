@@ -76,7 +76,7 @@ public class MainController {
         return newGame;
     }
 
-    @GetMapping("game/{id}")
+    @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
             if (game.gameId == id) {
@@ -86,7 +86,7 @@ public class MainController {
         throw new Exception();
     }
 
-    @GetMapping("game/{id}/board")
+    @GetMapping("/game/{id}/board")
     public BoardWrapper getBoardById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
             if (game.gameId == id) {
@@ -97,7 +97,7 @@ public class MainController {
     }
 
     // Todo: wait for implementation
-    @PostMapping("game/{id}/move")
+    @PostMapping("/game/{id}/move")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
@@ -144,7 +144,7 @@ public class MainController {
 
     }
 
-    @PostMapping("game/{id}/stop")
+    @PostMapping("/game/{id}/stop")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void stopGameAndUploadRecord(@PathVariable("id") int id,
                                         @RequestBody String username) {

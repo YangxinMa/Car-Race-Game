@@ -19,7 +19,7 @@ public class GameWrapper {
         wrapper.isGameLost = !game.CarCrash();
         wrapper.currentScore = game.getPoint();
         wrapper.stopByUser = game.isQuit();
-
+        wrapper.board = BoardWrapper.getBoard(game);
         return wrapper;
     }
 }
