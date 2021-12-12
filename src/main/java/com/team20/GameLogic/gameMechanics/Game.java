@@ -79,8 +79,11 @@ public class Game {
         }
     }
     public boolean CarCrash(){
-        if(player.getColumn() == 0 || player.getColumn() == map.getWidth() - 1) {
-//            System.out.println("Hit Wall");
+        if(player.getColumn() == 0
+                || player.getColumn() == map.getWidth() - 1
+                || player.getRow() == 0
+                || player.getRow() == map.getHeight() - 1) {
+//            System.out.println("You have walked over the range!!");
             return false;
         }
         else if(isOppositeOrNot(player.getRow(), player.getColumn())){
