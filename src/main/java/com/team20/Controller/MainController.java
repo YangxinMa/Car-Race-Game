@@ -11,7 +11,7 @@ import java.util.*;
 @RestController
 public class MainController {
     private static List<GameWrapper> games = new ArrayList<>();
-    private static int gameID = 1; // Todo: may use AtomicInteger will be better
+    private static int gameID = 0; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
     private List<Game> backGames = new ArrayList<>();
 
@@ -31,6 +31,7 @@ public class MainController {
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody String username) {
+        username = username.substring(0, username.length()-1); // Do not remove it.
         for (Record user : users) {
             if (user.user.equals(username)) {
                 return username;
@@ -55,6 +56,7 @@ public class MainController {
             dict.put("Rank", user.rank);
             dict.put("User", user.user);
             dict.put("Score", user.score);
+            System.out.println(dict);
             userList.add(dict);
         }
         return userList.toArray();
