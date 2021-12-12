@@ -78,7 +78,7 @@ public class MainController {
     //Mark:
     @GetMapping("/rank")
     public Object[] getRank(){
-        List<Map> userList = new ArrayList<>();
+        List<Map> userList = rankDao.getData();
 //        users.sort(new Comparator<Record>() {
 //            @Override
 //            public int compare(Record r1, Record r2) {
@@ -95,16 +95,16 @@ public class MainController {
 //        }
 
         //Mark:
-        Map<String, Float> data = rankDao.getData();
-        Integer i = 1;
-        for (String name: data.keySet()){
-            Map dict = new HashMap();
-            dict.put("User", name);
-            dict.put("Rank", i);
-            dict.put("Score", data.get(name));
-            userList.add(dict);
-            i += 1;
-        }
+//        Map<String, Float> data = rankDao.getData();
+//        Integer i = 1;
+//        for (String name: data.keySet()){
+//            Map dict = new HashMap();
+//            dict.put("User", name);
+//            dict.put("Rank", i);
+//            dict.put("Score", data.get(name));
+//            userList.add(dict);
+//            i += 1;
+//        }
 
 
         return userList.toArray();
@@ -209,9 +209,9 @@ public class MainController {
                                         @RequestBody String username) {
         username = username.substring(0, username.length()-1);
         for (GameWrapper game : games) {
-            if (game.gameId == id - 1) {
+            if (game.gameId == id) {
                 game.stopByUser = false;
-                rankDao.save(username, (float) backGames.get(id-1).getPoint());
+                rankDao.save(username, (float) game.currentScore);
 
             }
         }

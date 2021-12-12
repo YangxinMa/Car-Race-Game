@@ -15,7 +15,8 @@ import java.util.Map;
 @Repository
 public class RankDao {
 
-    Map<String, Float> map = new HashMap<String, Float>();
+//    Map<String, Float> map = new HashMap<String, Float>();
+
 
     static {
 
@@ -77,8 +78,9 @@ public class RankDao {
 
     }
 
-    public Map<String, Float> getData(){
-
+    public List<Map> getData(){
+        List<Map> userList = new ArrayList<>();
+//        map = new HashMap<String, Float>();
         Connection conn = null;
         Statement st = null;
         ResultSet rs = null;
@@ -88,10 +90,20 @@ public class RankDao {
             st = conn.createStatement();
 
             st.execute("use test");
-            String sql = "select * from ranks order by score desc";
+//            st.executeUpdate("ALTER TABLE ranks ORDER BY score DESC");
+            String sql = "select * from ranks order by score DESC";
             rs = st.executeQuery(sql);
+            Integer i = 1;
             while (rs.next()) {
-                map.put(rs.getString("username"), rs.getFloat("score"));
+                String username = rs.getString("username");
+                Float score = rs.getFloat("score");
+                Map dict = new HashMap();
+                dict.put("User", username);
+                dict.put("Rank", i);
+                dict.put("Score", score);
+                userList.add(dict);
+//                map.put(username, score);
+//                System.out.println(username + " " + score);
             }
 
         } catch (SQLException e) {
@@ -103,7 +115,9 @@ public class RankDao {
                 e.printStackTrace();
             }
         }
-        return map;
+
+
+        return userList;
     }
 
     public String addUser(String username){
