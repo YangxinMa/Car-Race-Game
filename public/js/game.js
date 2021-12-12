@@ -10,13 +10,19 @@ const gameObj = new Vue({
         game: null,
         board: null,
     },
-
+    created: function() {
+      setInterval(this.timer, 1000);
+    },
     methods: {
         newGame: createNewGame,
         carMove: sendMoveCars,
         endGame: stopAndUploadRecord,
         locationMatches: function(loc, x, y) {
             return loc.x == x && loc.y == y;
+        },
+        timer: function() {
+            sendMoveCars();
+            console.log("time")
         },
     }
 });
