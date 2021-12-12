@@ -101,8 +101,8 @@ public class MainController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
-
-
+        move = move.substring(0, move.length()-1); // Do not remove it.
+        System.out.println(move);
         String movement = " ";
         boolean carsMove = false;
         switch (move) {
