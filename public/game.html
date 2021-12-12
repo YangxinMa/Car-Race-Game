@@ -32,7 +32,7 @@
                             <img v-if="locationMatches(board.pointLocation, rowIdx, colIdx)"
                                  src="img/game/cookie.png" class="stack"/>
                             <div v-if="locationMatches(board.playerLocation, rowIdx, colIdx)">
-                                <img v-else-if="game.isGameLost" src="img/game/cancel.png" class="stack"/>
+                                <img v-if="game.isGameLost" src="img/game/cancel.png" class="stack"/>
                                 <img v-else src="img/game/person.png" class="stack"/>
                             </div>
                             <div v-for="aCar in board.carLocations">

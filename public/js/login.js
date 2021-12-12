@@ -3,21 +3,15 @@
 const loginObj = new Vue({
     el: "#loginWeb",
     data: {
-        username: "",
+        user: "",
     },
     methods: {
-        login: function () {
-            loginHelper(
-                loginObj.username,
-            );
-        }
+        login: loginHelper,
     }
 });
 
-function loginHelper (username) {
-    axios.post('/login', {
-        username: username,
-    }).then(function (response) {
+function loginHelper(){
+    axios.post('/login', loginObj.user).then(function (response) {
         console.log(response);
         localStorage.setItem('CurrentUser', response.data);
         window.location.href = "game.html";

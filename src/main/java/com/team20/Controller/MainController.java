@@ -1,5 +1,6 @@
 package com.team20.Controller;
 
+import com.team20.GameLogic.gameMechanics.Game;
 import com.team20.Dao.RankDao;
 import com.team20.TempSql.Record;
 import com.team20.Wrapper.*;
@@ -18,6 +19,7 @@ public class MainController {
     private static List<GameWrapper> games = new ArrayList<>();
     private static int gameID = 1; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
+    private List<Game> backGames = new ArrayList<>();
 
     //Mark:
     private static Map<String, Float> ranks = new HashMap<String, Float>();;
@@ -39,6 +41,7 @@ public class MainController {
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody String username) {
+        username = username.substring(0, username.length()-1); // Do not remove it.
 //        for (Record user : users) {
 //            if (user.user.equals(username)) {
 //                return username;
@@ -51,8 +54,6 @@ public class MainController {
         //Mark:
         rankDao.addUser(username);
         return username;
-
-
     }
 
 //    @GetMapping("/rank")
@@ -117,13 +118,15 @@ public class MainController {
     @PostMapping("/game")
     @ResponseStatus(HttpStatus.CREATED)
     public GameWrapper createGame() {
-        GameWrapper newGame = GameWrapper.getGame(gameID);
+        Game game = new Game();
+        backGames.add(game);
+        GameWrapper newGame = GameWrapper.getGame(game, gameID);
         gameID++;
         games.add(newGame);
         return newGame;
     }
 
-    @GetMapping("game/{id}")
+    @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
             if (game.gameId == id) {
@@ -133,7 +136,7 @@ public class MainController {
         throw new Exception();
     }
 
-    @GetMapping("game/{id}/board")
+    @GetMapping("/game/{id}/board")
     public BoardWrapper getBoardById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
             if (game.gameId == id) {
@@ -144,33 +147,54 @@ public class MainController {
     }
 
     // Todo: wait for implementation
-    @PostMapping("game/{id}/move")
+    @PostMapping("/game/{id}/move")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
+        move = move.substring(0, move.length()-1); // Do not remove it.
+        System.out.println(move);
+        String movement = " ";
+        boolean carsMove = false;
         switch (move) {
             case "MOVE_UP": {
-
+                movement = "W";
+                break;
             }
             case "MOVE_DOWN": {
-
+                movement = "S";
+                break;
             }
             case "MOVE_LEFT": {
+                movement = "A";
+                break;
 
             }
             case "MOVE_RIGHT": {
+                movement = "D";
+                break;
 
             }
             case "MOVE_CARS": {
+                movement = "m";
+                carsMove = true;
+                break;
 
             }
             default:
                 throw new Exception();
         }
+        if(carsMove){
+            backGames.get(id).moveOpposites();
+            backGames.get(id).restartOpposites();
+        }
+        else
+            backGames.get(id).playGame(movement);
+        GameWrapper temp = GameWrapper.getGame(backGames.get(id), id + 1);
+        games.set(id, temp);
 
     }
 
-    @PostMapping("game/{id}/stop")
+    @PostMapping("/game/{id}/stop")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void stopGameAndUploadRecord(@PathVariable("id") int id,
                                         @RequestBody String username) {
