@@ -1,5 +1,12 @@
+body {
+    background-image: url('.././img/gameBackground.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 tr, td, table{
-    border: "0";
+    /*border: "0";*/
     padding: 0px;
     margin: 0px;
     border-spacing: 0px;
@@ -17,58 +24,59 @@ img.stack{
 }
 
 
-/*
-    General Structure
-*/
-.sidebar {
-    width: 200px;
-    border: 0px solid black;
-}
+/*!**/
+/*    General Structure*/
+/**!*/
+/*.sidebar {*/
+/*    width: 200px;*/
+/*    border: 0px solid black;*/
+/*}*/
 
-#left {
-    float: left;
-}
+/*#left {*/
+/*    float: left;*/
+/*}*/
 
-#right {
-    float: right;
-}
+/*#right {*/
+/*    float: right;*/
+/*}*/
 
-#contents {
-    margin-left: 210px;
-    margin-right: 210px;
-}
-
-
+/*#contents {*/
+/*    margin-left: 210px;*/
+/*    margin-right: 210px;*/
+/*}*/
 
 
-/*
-    Course List
-*/
-ul#courses {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-#courses li {
-    float: left;
-    width: 80;
-}
-#courses li a {
-    display: block;
-    padding: 3px;
-    text-decoration: none;
-}
-#courses li a:hover {
-    background-color: yellow;
-}
 
-tr.header {
-    font-weight: bold;
-}
-tr.offerings {
-    cursor: pointer;
-}
-tr.offerings:hover {
-    background-color: yellow;
-}
+
+/*!**/
+/*    Course List*/
+/**!*/
+/*ul#courses {*/
+/*    list-style-type: none;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    overflow: hidden;*/
+/*}*/
+/*#courses li {*/
+/*    float: left;*/
+/*    width: 80;*/
+/*}*/
+/*#courses li a {*/
+/*    display: block;*/
+/*    padding: 3px;*/
+/*    text-decoration: none;*/
+/*}*/
+/*#courses li a:hover {*/
+/*    background-color: yellow;*/
+/*}*/
+
+/*tr.header {*/
+/*    !*font-weight: bold;*!*/
+/*    !*font-size: 50px;*!*/
+/*}*/
+/*tr.offerings {*/
+/*    cursor: pointer;*/
+/*}*/
+/*tr.offerings:hover {*/
+/*    background-color: yellow;*/
+/*}*/

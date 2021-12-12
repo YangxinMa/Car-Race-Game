@@ -21,7 +21,7 @@
                 <h1 class="h3 mb-3 fw-normal text-white">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input class="form-control" id="floatingInput" v-model="user" required v-on:keyup.enter="login()">
+                    <input class="form-control" id="floatingInput" v-model="user" maxlength="16" required v-on:keyup.enter="login()">
                     <label for="floatingInput">User ID</label>
                 </div>
 
