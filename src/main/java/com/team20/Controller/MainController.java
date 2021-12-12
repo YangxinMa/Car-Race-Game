@@ -1,7 +1,9 @@
 package com.team20.Controller;
 
+import com.team20.Dao.RankDao;
 import com.team20.TempSql.Record;
 import com.team20.Wrapper.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +11,16 @@ import java.util.*;
 
 @RestController
 public class MainController {
+
+    @Autowired
+    RankDao rankDao;
+
     private static List<GameWrapper> games = new ArrayList<>();
     private static int gameID = 1; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
+
+    //Mark:
+    private static Map<String, Float> ranks = new HashMap<String, Float>();;
 
 
 //    @PostMapping("/login")
@@ -30,32 +39,73 @@ public class MainController {
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody String username) {
-        for (Record user : users) {
-            if (user.user.equals(username)) {
-                return username;
-            }
-        }
-        Record newUser = new Record(username, users.size()+1);
-        users.add(newUser);
+//        for (Record user : users) {
+//            if (user.user.equals(username)) {
+//                return username;
+//            }
+//        }
+//        Record newUser = new Record(username, users.size()+1);
+//        users.add(newUser);
+//        return username;
+
+        //Mark:
+        rankDao.addUser(username);
         return username;
+
+
     }
 
+//    @GetMapping("/rank")
+//    public Object[] getRank(){
+//        List<Map> userList = new ArrayList<>();
+//        users.sort(new Comparator<Record>() {
+//            @Override
+//            public int compare(Record r1, Record r2) {
+//                return r1.rank - r2.rank;
+//            }
+//        });
+//        for (Record user: users) {
+//            Map dict = new HashMap();
+//            dict.put("Rank", user.rank);
+//            dict.put("User", user.user);
+//            dict.put("Score", user.score);
+//            userList.add(dict);
+//        }
+//        return userList.toArray();
+//    }
+
+    //Mark:
     @GetMapping("/rank")
     public Object[] getRank(){
         List<Map> userList = new ArrayList<>();
-        users.sort(new Comparator<Record>() {
-            @Override
-            public int compare(Record r1, Record r2) {
-                return r1.rank - r2.rank;
-            }
-        });
-        for (Record user: users) {
+//        users.sort(new Comparator<Record>() {
+//            @Override
+//            public int compare(Record r1, Record r2) {
+//                return r1.rank - r2.rank;
+//            }
+//        });
+//
+//        for (Record user: users) {
+//            Map dict = new HashMap();
+//            dict.put("Rank", user.rank);
+//            dict.put("User", user.user);
+//            dict.put("Score", user.score);
+//            userList.add(dict);
+//        }
+
+        //Mark:
+        Map<String, Float> data = rankDao.getData();
+        Integer i = 1;
+        for (String name: data.keySet()){
             Map dict = new HashMap();
-            dict.put("Rank", user.rank);
-            dict.put("User", user.user);
-            dict.put("Score", user.score);
+            dict.put("User", name);
+            dict.put("Rank", i);
+            dict.put("Score", data.get(name));
             userList.add(dict);
+            i += 1;
         }
+
+
         return userList.toArray();
     }
 
