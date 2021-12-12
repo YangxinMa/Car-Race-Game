@@ -214,6 +214,7 @@ public class MainController {
                     if (user.user.equals(username)) {
                         user.score = game.currentScore;
                         // Todo: bug: rank needs to be update too.
+                        rankDao.save(username, (float) backGames.get(id-1).getPoint());
                     }
                 }
             }

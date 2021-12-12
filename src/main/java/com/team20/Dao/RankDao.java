@@ -62,7 +62,7 @@ public class RankDao {
             st = conn.createStatement();
 
             st.execute("use test");
-            String sql = "insert into ranks (username, score) values('" + username + "'" +", " + score + ") on duplicate key update score=values(score)";
+            String sql = "insert into ranks (username, score) values('" + username + "'"+", " + score + ") on duplicate key update score=values(score)";
             st.executeUpdate(sql);
 
         } catch (SQLException e) {
