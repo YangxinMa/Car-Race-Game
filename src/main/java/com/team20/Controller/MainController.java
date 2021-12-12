@@ -11,22 +11,9 @@ import java.util.*;
 @RestController
 public class MainController {
     private static List<GameWrapper> games = new ArrayList<>();
-//    private static int gameID = 1; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
     private List<Game> backGames = new ArrayList<>();
 
-//    @PostMapping("/login")
-//    @ResponseStatus(HttpStatus.OK)
-//    public String login(@RequestBody String username) {
-//        for (RecordWrapper user : users) {
-//            if (user.user.equals(username)) {
-//                return username;
-//            }
-//        }
-//        RecordWrapper newUser = new RecordWrapper(username);
-//        users.add(newUser);
-//        return username;
-//    }
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)

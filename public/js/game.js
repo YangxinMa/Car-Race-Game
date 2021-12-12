@@ -11,7 +11,7 @@ const gameObj = new Vue({
         board: null,
     },
     created: function() {
-      setInterval(this.timer, 1000);
+      setInterval(this.timer, 200);
     },
     methods: {
         newGame: createNewGame,
@@ -121,8 +121,8 @@ function sendMove(direction) {
             loadGameBoard();
             loadGame();
 
-            gameObj.moveFlag = false;
-            setTimeout(sendMoveCars, 100);
+            // gameObj.moveFlag = false;
+            // setTimeout(sendMoveCars, 100);
         })
         .catch(function (error) {
             console.log(error);
