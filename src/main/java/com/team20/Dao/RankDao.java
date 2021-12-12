@@ -64,15 +64,30 @@ public class RankDao {
 
             st.execute("use test");
 
+//            String sql = "insert into ranks (username, score) values('" + username + "'" + ", " + score + ") on duplicate key update score=values(score)";
+//            st.executeUpdate(sql);
 
+//            String sql = "select * from ranks where username ='" + username + "'";
+//            rs = st.executeQuery(sql);
+//            while (rs.next()){
+//                Float s = rs.getFloat("score");
+//                if(score > s) {
+//                    sql = "insert into ranks (username, score) values('" + username + "'" + ", " + score + ") on duplicate key update score=values(score)";
+//                    st.executeUpdate(sql);
+//                }
+//            }
 
+            boolean check = true;
             String sql = "select * from ranks where username ='" + username + "'";
             rs = st.executeQuery(sql);
             while (rs.next()){
-                if(score > rs.getFloat("score")) {
-                    sql = "insert into ranks (username, score) values('" + username + "'" + ", " + score + ") on duplicate key update score=values(score)";
-                    st.executeUpdate(sql);
+                if(score > rs.getFloat("score")){
+                    check = false;
                 }
+            }
+            if (!check){
+                sql = "insert into ranks (username, score) values('" + username + "'"+", " + score + ") on duplicate key update score=values(score)";
+                st.executeUpdate(sql);
             }
 
 
