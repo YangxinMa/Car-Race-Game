@@ -38,14 +38,14 @@
                             <img v-else src="img/game/road.png"/>
 
                             <img v-if="locationMatches(board.pointLocation, rowIdx, colIdx)"
-                                 src="img/game/cookie.png" class="stack"/>
+                                 src="img/game/gold.png" class="stack"/>
                             <div v-if="locationMatches(board.playerLocation, rowIdx, colIdx)">
                                 <img v-if="game.isGameLost" src="img/game/cancel.png" class="stack"/>
-                                <img v-else src="img/game/person.png" class="stack"/>
+                                <img v-else src="img/game/player.png" class="stack"/>
                             </div>
                             <div v-for="aCar in board.carLocations">
                                 <img v-if="locationMatches(aCar, rowIdx, colIdx)"
-                                     src="img/game/carRed.png" class="stack"/>
+                                     src="img/game/roadblock.png" class="stack"/>
                             </div>
                         </div>
                     </td>
