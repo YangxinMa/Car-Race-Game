@@ -10,19 +10,52 @@ const gameObj = new Vue({
         game: null,
         board: null,
     },
-
+    // created: function() {
+    //   setInterval(this.timer, 400);
+    // },
+    mounted() {
+        if (sessionStorage.getItem("time") != null) {
+            window.clearInterval(sessionStorage.getItem("time"));
+        }
+        let time = this.timer();
+        sessionStorage.setItem("time", time);
+    },
     methods: {
         newGame: createNewGame,
         carMove: sendMoveCars,
         endGame: stopAndUploadRecord,
+        changeSpeed: function(speedLevel) {
+            if (sessionStorage.getItem("time") != null) {
+                window.clearInterval(sessionStorage.getItem("time"));
+            }
+            let time = null;
+            if (speedLevel === 1) {
+               time = setInterval(() => {
+                   sendMoveCars();
+               }, 400);
+            } else if (speedLevel === 2) {
+                time = setInterval(() => {
+                    sendMoveCars();
+                }, 200);
+            } else {
+                time = setInterval(() => {
+                    sendMoveCars();
+                }, 100);
+            }
+            sessionStorage.setItem("time", time)
+        },
         locationMatches: function(loc, x, y) {
-            return loc.x == x && loc.y == y;
+            return loc.x === x && loc.y === y;
+        },
+        timer: function() {
+            return setInterval(() => {
+                sendMoveCars();
+            }, 400)
         },
     }
 });
 
 window.addEventListener("keydown", function(e) {
-    console.log("Key pressed: " + e.keyCode);
     switch(e.keyCode) {
         case 37: sendMove("MOVE_LEFT"); break;
         case 38: sendMove("MOVE_UP"); break;
@@ -38,6 +71,7 @@ $(document).ready(function() {
         $(this).hide();
     });
 });
+
 
 function loadUser() {
     gameObj.user = localStorage.getItem('CurrentUser');
@@ -115,8 +149,8 @@ function sendMove(direction) {
             loadGameBoard();
             loadGame();
 
-            gameObj.moveFlag = false;
-            setTimeout(sendMoveCars, 100);
+            // gameObj.moveFlag = false;
+            // setTimeout(sendMoveCars, 100);
         })
         .catch(function (error) {
             console.log(error);
@@ -126,9 +160,15 @@ function sendMove(direction) {
 function stopAndUploadRecord() {
     axios.post('/game/' + gameObj.game.gameId + "/stop", gameObj.user).then(function (response) {
         console.log(response);
+        // gameObj.game.isGameLost = false;
         gameObj.game = null;
-        gameObj.moveFlag = false;
-        window.location.href = "index.html";
+        gameObj.board = null;
+        gameObj.moveFlag = true;
+        gameObj.rank = null;
+        window.location.href = window.location.href
+        if (sessionStorage.getItem("time") != null) {
+            window.clearInterval(sessionStorage.getItem("time"));
+        }
     }).catch(function (error) {
         console.log(error);
     });

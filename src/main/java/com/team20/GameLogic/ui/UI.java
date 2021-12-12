@@ -64,6 +64,9 @@ public class UI {
             case "D":
             case "d":
                 return game.canMoveOrNot(s, game.getPlayer());
+            case "q":
+            case "Q":
+                return true;
         }
         return false;
     }
@@ -73,7 +76,7 @@ public class UI {
         {
             System.out.println("You have got " + game.getPoint() + " Points So Far!!");
             this.printMap();
-            System.out.print("Enter your move [WASD?]: ");
+            System.out.print("Enter your Move [WASD?], Q to Quit!: ");
             String operation = input.nextLine();
             while(!this.ValidInput(operation))
             {
@@ -86,7 +89,7 @@ public class UI {
                 {
                     System.out.println("Invalid move. Please enter just A (left), S (down), D (right), or W (up).");
                 }
-                System.out.print("Enter your move [WASD?]: ");
+                System.out.print("Enter your Move [WASD?], Q to Quit: ");
                 operation = input.nextLine();
 
             }

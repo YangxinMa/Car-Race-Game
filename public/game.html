@@ -18,8 +18,15 @@
 
         <button id="newGame" type="button" v-on:click="newGame()">New Game</button>
 
-        <p v-if="game != null">
-            Score: {{game.currentScore}}</p>
+        <h4 v-if="game != null">
+            Score: {{game.currentScore}}</h4>
+
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(1)">
+            Speed: 1x</button>
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(2)">
+            Speed: 2x</button>
+        <button v-if="game != null" type="button" v-on:click="changeSpeed(4)">
+            Speed: 4x</button>
 
         <div v-if="board != null">
             <table>
@@ -32,7 +39,7 @@
                             <img v-if="locationMatches(board.pointLocation, rowIdx, colIdx)"
                                  src="img/game/cookie.png" class="stack"/>
                             <div v-if="locationMatches(board.playerLocation, rowIdx, colIdx)">
-                                <img v-else-if="game.isGameLost" src="img/game/cancel.png" class="stack"/>
+                                <img v-if="game.isGameLost" src="img/game/cancel.png" class="stack"/>
                                 <img v-else src="img/game/person.png" class="stack"/>
                             </div>
                             <div v-for="aCar in board.carLocations">
@@ -45,7 +52,7 @@
             </table>
             <h1 v-if="game.isGameLost">YOU LOST! Try again?</h1>
             <button v-if="game != null" type="button" v-on:click="endGame()">
-                Stop game and upload your record
+                Upload your record
             </button>
         </div>
 

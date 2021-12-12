@@ -10,8 +10,8 @@ public class LocationWrapper {
 
     public static LocationWrapper getOneCellLocation(int xPos, int yPos) {
         LocationWrapper location = new LocationWrapper();
-        location.x = yPos;
-        location.y = xPos;
+        location.x = xPos;
+        location.y = yPos;
 
         return location;
     }
