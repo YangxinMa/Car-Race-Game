@@ -17,7 +17,7 @@ public class MainController {
     RankDao rankDao;
 
     private static List<GameWrapper> games = new ArrayList<>();
-    private static int gameID = 1; // Todo: may use AtomicInteger will be better
+//    private static int gameID = 1; // Todo: may use AtomicInteger will be better
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
     private List<Game> backGames = new ArrayList<>();
 
@@ -120,15 +120,20 @@ public class MainController {
     public GameWrapper createGame() {
         Game game = new Game();
         backGames.add(game);
-        GameWrapper newGame = GameWrapper.getGame(game, gameID);
-        gameID++;
+        int index = backGames.size();
+        System.out.println("Now Creating Game Number: " + index + " And Its Index is: " + (index-1));
+        GameWrapper newGame = GameWrapper.getGame(game, index);
         games.add(newGame);
+        System.out.println("The Id of this new Game is: " + newGame.gameId);
         return newGame;
     }
 
     @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
+        System.out.println("When Getting Game By ID, the Id is:" + id);
+        System.out.println("The Size of The games is: " + games.size());
         for (GameWrapper game : games) {
+            System.out.println(game.gameId);
             if (game.gameId == id) {
                 return game;
             }
@@ -138,6 +143,7 @@ public class MainController {
 
     @GetMapping("/game/{id}/board")
     public BoardWrapper getBoardById(@PathVariable("id") int id) throws Exception {
+
         for (GameWrapper game : games) {
             if (game.gameId == id) {
                 return game.board;
@@ -151,6 +157,7 @@ public class MainController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
+        System.out.println("Now is Operating Game " + id);
         move = move.substring(0, move.length()-1); // Do not remove it.
         System.out.println(move);
         String movement = " ";
@@ -184,13 +191,15 @@ public class MainController {
                 throw new Exception();
         }
         if(carsMove){
-            backGames.get(id).moveOpposites();
-            backGames.get(id).restartOpposites();
+            backGames.get(id-1).moveOpposites();
+            backGames.get(id-1).restartOpposites();
         }
-        else
-            backGames.get(id).playGame(movement);
-        GameWrapper temp = GameWrapper.getGame(backGames.get(id), id + 1);
-        games.set(id, temp);
+        else {
+            backGames.get(id-1).playGame(movement);
+        }
+        GameWrapper temp = GameWrapper.getGame(backGames.get(id-1), id);
+
+        games.set(id-1, temp);
 
     }
 
