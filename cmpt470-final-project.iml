@@ -103,5 +103,7 @@
     <orderEntry type="library" name="Maven: com.zaxxer:HikariCP:4.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.13" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.13" level="project" />
+    <orderEntry type="library" name="datatables.net-dt" level="application" />
+    <orderEntry type="library" name="dataTables.buttons" level="application" />
   </component>
 </module>
