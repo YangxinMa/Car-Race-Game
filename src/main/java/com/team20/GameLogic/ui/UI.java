@@ -83,7 +83,7 @@ public class UI {
                 if(!game.canMoveOrNot(operation,game.getPlayer()))
                 {
                     System.out.println("Invalid move: you cannot move through walls!");
-                    break;
+//                    break;
                 }
                 else
                 {
