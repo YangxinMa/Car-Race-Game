@@ -17,7 +17,7 @@ public class Map {
     public boolean[][] getMap() {
         return map;
     }
-    private void setMapAt(int i, int j, boolean bool){
+    public void setMapAt(int i, int j, boolean bool){
         this.map[i][j] = bool;
     }
     public boolean getMapAt(int i, int j){

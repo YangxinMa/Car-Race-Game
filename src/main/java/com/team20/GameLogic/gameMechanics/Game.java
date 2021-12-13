@@ -80,9 +80,9 @@ public class Game {
     }
     public boolean CarCrash(){
         if(player.getColumn() == 0
-                || player.getColumn() == map.getWidth() - 1
-                || player.getRow() == 0
-                || player.getRow() == map.getHeight() - 1) {
+                || player.getColumn() == map.getWidth() - 1){
+//                || player.getRow() == 0
+//                || player.getRow() == map.getHeight() - 1) {
 //            System.out.println("You have walked over the range!!");
             return false;
         }
@@ -105,9 +105,16 @@ public class Game {
         {
             case "w":
             case "W":
+                if((player.getRow() - 1) < 0) {
+                    return false;
+                }
                 return !map.getMapAt(player.getRow() - 1, player.getColumn());
+
             case "S":
             case "s":
+                if((player.getRow() + 1) > map.getHeight() - 1) {
+                    return false;
+                }
                 return !map.getMapAt(player.getRow() + 1, player.getColumn());
             case "A":
             case "a":
@@ -123,7 +130,7 @@ public class Game {
         this.board = new Cell[map.getHeight()][map.getWidth()];
         int height = map.getHeight();
         int width = map.getWidth();
-        int startRow = map.getHeight() / 2;
+        int startRow = map.getHeight() - 2;
         int startCol = map.getWidth() / 2;
         this.player = new Car(startRow, startCol);
         for(int i = 0; i < oppositeNum; i++){
@@ -167,7 +174,7 @@ public class Game {
         switch (this.moveOrQuit(s)) {
             case 1:
                 player.chooseNextMove(s);
-//                moveOpposites();
+                moveOpposites();
                 restartOpposites();
                 pointGotten();
                 break;
