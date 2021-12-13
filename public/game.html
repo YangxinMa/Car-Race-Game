@@ -101,9 +101,9 @@
                             </tr>
                         </table>
 
-<!--                        <img class="card-img-overlay"-->
-<!--                             v-if="game.isGameLost" src="img/game/gameover.png"/>-->
-                        <h1 class="text-white" v-if="game.isGameLost">YOU LOST! Try again?</h1>
+                        <div v-if="game.isGameLost" class="alert alert-danger text-center" role="alert">
+                            Everything happens for a reason.
+                        </div>
 
                     </div>
                 </div>

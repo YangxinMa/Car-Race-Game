@@ -5,10 +5,6 @@ body {
     background-size: cover;
 }
 
-/*.logout img {*/
-/*    background-color: white;*/
-/*}*/
-
 tr, td, table{
     /*border: "0";*/
     padding: 0px;
@@ -29,68 +25,20 @@ img.stack{
     left: 0;
 }
 
-.datatable tfoot {
-    display: table-header-group;
+/*.datatable tfoot {*/
+/*    display: table-header-group;*/
+/*}*/
+
+/*.datatable tfoot .filter-column {*/
+/*    width: 100% !important;*/
+/*}*/
+
+
+.alert {
+    /*position:fixed;*/
+    /*left:70%;*/
+    width:550px;
+    height:60px;
+    /*margin-top:-450px;*/
+    /*margin-left:80px;*/
 }
-
-.datatable tfoot .filter-column {
-    width: 100% !important;
-}
-
-
-/*!**/
-/*    General Structure*/
-/**!*/
-/*.sidebar {*/
-/*    width: 200px;*/
-/*    border: 0px solid black;*/
-/*}*/
-
-/*#left {*/
-/*    float: left;*/
-/*}*/
-
-/*#right {*/
-/*    float: right;*/
-/*}*/
-
-/*#contents {*/
-/*    margin-left: 210px;*/
-/*    margin-right: 210px;*/
-/*}*/
-
-
-
-
-/*!**/
-/*    Course List*/
-/**!*/
-/*ul#courses {*/
-/*    list-style-type: none;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    overflow: hidden;*/
-/*}*/
-/*#courses li {*/
-/*    float: left;*/
-/*    width: 80;*/
-/*}*/
-/*#courses li a {*/
-/*    display: block;*/
-/*    padding: 3px;*/
-/*    text-decoration: none;*/
-/*}*/
-/*#courses li a:hover {*/
-/*    background-color: yellow;*/
-/*}*/
-
-/*tr.header {*/
-/*    !*font-weight: bold;*!*/
-/*    !*font-size: 50px;*!*/
-/*}*/
-/*tr.offerings {*/
-/*    cursor: pointer;*/
-/*}*/
-/*tr.offerings:hover {*/
-/*    background-color: yellow;*/
-/*}*/
