@@ -10,9 +10,9 @@ const gameObj = new Vue({
         game: null,
         board: null,
     },
-    // created: function() {
-    //   setInterval(this.timer, 400);
-    // },
+    created() {
+        // this.loadRankBoard();
+    },
     mounted() {
         if (sessionStorage.getItem("time") != null) {
             window.clearInterval(sessionStorage.getItem("time"));
@@ -82,9 +82,19 @@ function loadRankBoard(){
     axios.get('/rank', {}).then(function (response) {
         console.log(response);
         gameObj.rank = response.data;
+        initTable();
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+function initTable() {
+    setTimeout(() => {
+        $("#rankTable").DataTable({
+            // "iDisplayLength": 10,
+            // "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
+        });
+    }, 100)
 }
 
 function createNewGame() {

@@ -18,11 +18,11 @@
         <main class="form-signin">
             <img class="mb-4" src="img/logo.png" alt="" width="200" height="100">
             <div id="loginWeb">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 fw-normal text-white">Please sign in</h1>
 
                 <div class="form-floating">
-                    <input class="form-control" id="floatingInput" v-model="user" required v-on:keyup.enter="login()">
-                    <label for="floatingInput">Email address</label>
+                    <input class="form-control" id="floatingInput" v-model="user" maxlength="16" required v-on:keyup.enter="login()">
+                    <label for="floatingInput">User ID</label>
                 </div>
 
 <!--                <div class="form-floating mt-2">-->
