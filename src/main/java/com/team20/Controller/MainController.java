@@ -1,8 +1,10 @@
 package com.team20.Controller;
 
 import com.team20.GameLogic.gameMechanics.Game;
+import com.team20.Dao.RankDao;
 import com.team20.TempSql.Record;
 import com.team20.Wrapper.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,42 +12,70 @@ import java.util.*;
 
 @RestController
 public class MainController {
+
+    @Autowired
+    RankDao rankDao;
+
     private static List<GameWrapper> games = new ArrayList<>();
     private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
     private List<Game> backGames = new ArrayList<>();
 
+    //Mark:
+    private static Map<String, Float> ranks = new HashMap<String, Float>();;
+
+
+//    @PostMapping("/login")
+//    @ResponseStatus(HttpStatus.OK)
+//    public String login(@RequestBody String username) {
+//        for (RecordWrapper user : users) {
+//            if (user.user.equals(username)) {
+//                return username;
+//            }
+//        }
+//        RecordWrapper newUser = new RecordWrapper(username);
+//        users.add(newUser);
+//        return username;
+//    }
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody String username) {
         username = username.substring(0, username.length()-1); // Do not remove it.
-        for (Record user : users) {
-            if (user.user.equals(username)) {
-                return username;
-            }
-        }
-        Record newUser = new Record(username, users.size()+1);
-        users.add(newUser);
+        rankDao.addUser(username);
         return username;
     }
 
     @GetMapping("/rank")
     public Object[] getRank(){
-        List<Map> userList = new ArrayList<>();
-        users.sort(new Comparator<Record>() {
-            @Override
-            public int compare(Record r1, Record r2) {
-                return r1.rank - r2.rank;
-            }
-        });
-        for (Record user: users) {
-            Map dict = new HashMap();
-            dict.put("Rank", user.rank);
-            dict.put("User", user.user);
-            dict.put("Score", user.score);
-            System.out.println(dict);
-            userList.add(dict);
-        }
+        List<Map> userList = rankDao.getData();
+//        users.sort(new Comparator<Record>() {
+//            @Override
+//            public int compare(Record r1, Record r2) {
+//                return r1.rank - r2.rank;
+//            }
+//        });
+//
+//        for (Record user: users) {
+//            Map dict = new HashMap();
+//            dict.put("Rank", user.rank);
+//            dict.put("User", user.user);
+//            dict.put("Score", user.score);
+//            userList.add(dict);
+//        }
+
+        //Mark:
+//        Map<String, Float> data = rankDao.getData();
+//        Integer i = 1;
+//        for (String name: data.keySet()){
+//            Map dict = new HashMap();
+//            dict.put("User", name);
+//            dict.put("Rank", i);
+//            dict.put("Score", data.get(name));
+//            userList.add(dict);
+//            i += 1;
+//        }
+
+
         return userList.toArray();
     }
 
@@ -148,8 +178,9 @@ public class MainController {
                                         @RequestBody String username) {
         username = username.substring(0, username.length()-1);
         for (GameWrapper game : games) {
-            if (game.gameId == id - 1) {
+            if (game.gameId == id) {
                 game.stopByUser = false;
+                rankDao.save(username, (float) game.currentScore);
 
             }
         }
