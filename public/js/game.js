@@ -10,9 +10,6 @@ const gameObj = new Vue({
         game: null,
         board: null,
     },
-    created() {
-        // this.loadRankBoard();
-    },
     mounted() {
         if (sessionStorage.getItem("time") != null) {
             window.clearInterval(sessionStorage.getItem("time"));
@@ -90,10 +87,7 @@ function loadRankBoard(){
 
 function initTable() {
     setTimeout(() => {
-        $("#rankTable").DataTable({
-            // "iDisplayLength": 10,
-            // "aLengthMenu": [[10, 25, 50, 100,  -1], [10, 25, 50, 100, "All"]]
-        });
+        $("#rankTable").DataTable({});
     }, 100)
 }
 
@@ -158,9 +152,6 @@ function sendMove(direction) {
             console.log(response);
             loadGameBoard();
             loadGame();
-
-            // gameObj.moveFlag = false;
-            // setTimeout(sendMoveCars, 100);
         })
         .catch(function (error) {
             console.log(error);
@@ -170,7 +161,6 @@ function sendMove(direction) {
 function stopAndUploadRecord() {
     axios.post('/game/' + gameObj.game.gameId + "/stop", gameObj.user).then(function (response) {
         console.log(response);
-        // gameObj.game.isGameLost = false;
         gameObj.game = null;
         gameObj.board = null;
         gameObj.moveFlag = true;

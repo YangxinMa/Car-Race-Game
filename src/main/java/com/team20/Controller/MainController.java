@@ -2,7 +2,6 @@ package com.team20.Controller;
 
 import com.team20.GameLogic.gameMechanics.Game;
 import com.team20.Dao.RankDao;
-import com.team20.TempSql.Record;
 import com.team20.Wrapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,30 +16,12 @@ public class MainController {
     RankDao rankDao;
 
     private static List<GameWrapper> games = new ArrayList<>();
-    private static List<Record> users = new ArrayList<>(); // Todo: Need to switch to SQL storage
     private List<Game> backGames = new ArrayList<>();
-
-    //Mark:
-    private static Map<String, Float> ranks = new HashMap<String, Float>();;
-
-
-//    @PostMapping("/login")
-//    @ResponseStatus(HttpStatus.OK)
-//    public String login(@RequestBody String username) {
-//        for (RecordWrapper user : users) {
-//            if (user.user.equals(username)) {
-//                return username;
-//            }
-//        }
-//        RecordWrapper newUser = new RecordWrapper(username);
-//        users.add(newUser);
-//        return username;
-//    }
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public String login(@RequestBody String username) {
-        username = username.substring(0, username.length()-1); // Do not remove it.
+        username = username.substring(0, username.length()-1);
         rankDao.addUser(username);
         return username;
     }
@@ -48,34 +29,6 @@ public class MainController {
     @GetMapping("/rank")
     public Object[] getRank(){
         List<Map> userList = rankDao.getData();
-//        users.sort(new Comparator<Record>() {
-//            @Override
-//            public int compare(Record r1, Record r2) {
-//                return r1.rank - r2.rank;
-//            }
-//        });
-//
-//        for (Record user: users) {
-//            Map dict = new HashMap();
-//            dict.put("Rank", user.rank);
-//            dict.put("User", user.user);
-//            dict.put("Score", user.score);
-//            userList.add(dict);
-//        }
-
-        //Mark:
-//        Map<String, Float> data = rankDao.getData();
-//        Integer i = 1;
-//        for (String name: data.keySet()){
-//            Map dict = new HashMap();
-//            dict.put("User", name);
-//            dict.put("Rank", i);
-//            dict.put("Score", data.get(name));
-//            userList.add(dict);
-//            i += 1;
-//        }
-
-
         return userList.toArray();
     }
 
@@ -112,7 +65,6 @@ public class MainController {
 
     @GetMapping("/game/{id}/board")
     public BoardWrapper getBoardById(@PathVariable("id") int id) throws Exception {
-
         for (GameWrapper game : games) {
             if (game.gameId == id) {
                 return game.board;
@@ -127,7 +79,7 @@ public class MainController {
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
         System.out.println("Now is Operating Game " + id);
-        move = move.substring(0, move.length()-1); // Do not remove it.
+        move = move.substring(0, move.length()-1);
         System.out.println(move);
         String movement = " ";
         boolean carsMove = false;
@@ -143,18 +95,15 @@ public class MainController {
             case "MOVE_LEFT": {
                 movement = "A";
                 break;
-
             }
             case "MOVE_RIGHT": {
                 movement = "D";
                 break;
-
             }
             case "MOVE_CARS": {
                 movement = "m";
                 carsMove = true;
                 break;
-
             }
             default:
                 throw new Exception();
