@@ -43,17 +43,13 @@ public class MainController {
         Game game = new Game();
         backGames.add(game);
         int index = backGames.size();
-        System.out.println("Now Creating Game Number: " + index + " And Its Index is: " + (index-1));
         GameWrapper newGame = GameWrapper.getGame(game, index);
         games.add(newGame);
-        System.out.println("The Id of this new Game is: " + newGame.gameId);
         return newGame;
     }
 
     @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
-        System.out.println("When Getting Game By ID, the Id is:" + id);
-        System.out.println("The Size of The games is: " + games.size());
         for (GameWrapper game : games) {
             System.out.println(game.gameId);
             if (game.gameId == id) {
@@ -78,9 +74,7 @@ public class MainController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,
                            @RequestBody String move) throws Exception {
-        System.out.println("Now is Operating Game " + id);
         move = move.substring(0, move.length()-1);
-        System.out.println(move);
         String movement = " ";
         boolean carsMove = false;
         switch (move) {
