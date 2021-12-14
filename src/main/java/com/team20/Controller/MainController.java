@@ -51,7 +51,6 @@ public class MainController {
     @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
-            System.out.println(game.gameId);
             if (game.gameId == id) {
                 return game;
             }
