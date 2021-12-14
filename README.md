@@ -1,7 +1,26 @@
 ## CMPT470 Team20 Final Project
 ```
-    We built this project based on our demo.
-    Except for features we already did in our demo, we added a car game logic that can run with terminal and set up the user's login database system for this check point.
+    This project is a single-player car parkour rank web game, and players control a racing car to avoid oncoming obstacles on the track.
+    Players do not need to control the accelerations but the moving directions of the car. 
+    During the game, players get scores by touching gold coins on the track. With more scores, the player will rank higher on the leaderboard.
+```
+
+### How to play
+```
+    1. Players log in with their user IDs（maximum length 16 characters） and click "New Game" to start.
+    2. Use the up, down, left, and right buttons on the keyboard to control the vehicle and avoid oncoming roadblocks.
+    3. Players can change the difficulty (speed) of the game through the three buttons at the top of the game window.
+    4. The game ends when the player hits the wall or a roadblock.
+    5. Collect golds on the track and get more scores.
+```
+
+### About the Leaderboard
+```
+    Players are allowed to upload their records.
+    The leaderboard only shows the highest record of each player.
+    Use Previous and Next buttons, or enter keywords in the search bar to find player records.
+    Use the scroll-down menu to change the number of entries displayed on each page (10, 15, 25...).
+    Click the arrows on the table header to change the order.
 ```
 
 ## Steps should be taken to get the project working
@@ -20,20 +39,6 @@
 ```
     Need to use IntelliJ IDEA to run src/main/java/com/team20/Model/App.java
 ```
-
-## Login information
-```
-    1. username: abc@gmail.com
-    2. password: 123456
-
-```
-
-## Announcements:
-```
-    1. Please follow the format required when you do the input operation.
-
-```
-
 
 ## URL
 ```
