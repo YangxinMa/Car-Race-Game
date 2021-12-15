@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+
+/**
+ *  Ref： Based on our CMPT 213 Assignment to develop and add more feature
+ */
+
 @RestController
 public class MainController {
 
@@ -32,11 +37,13 @@ public class MainController {
         return userList.toArray();
     }
 
+//    Ref： Based on our CMPT 213 Assignment to modify
     @GetMapping("/game")
     public List<GameWrapper> getGames() {
         return games;
     }
 
+//    Ref： Based on our CMPT 213 Assignment to modify
     @PostMapping("/game")
     @ResponseStatus(HttpStatus.CREATED)
     public GameWrapper createGame() {
@@ -48,6 +55,7 @@ public class MainController {
         return newGame;
     }
 
+//    Ref： Based on our CMPT 213 Assignment to modify
     @GetMapping("/game/{id}")
     public GameWrapper getGameById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
@@ -58,6 +66,7 @@ public class MainController {
         throw new Exception();
     }
 
+//    Ref： Based on our CMPT 213 Assignment to modify
     @GetMapping("/game/{id}/board")
     public BoardWrapper getBoardById(@PathVariable("id") int id) throws Exception {
         for (GameWrapper game : games) {
@@ -68,7 +77,7 @@ public class MainController {
         throw new Exception();
     }
 
-    // Todo: wait for implementation
+//    Ref： Based on our CMPT 213 Assignment to modify
     @PostMapping("/game/{id}/move")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void makeMoving(@PathVariable("id") int id,

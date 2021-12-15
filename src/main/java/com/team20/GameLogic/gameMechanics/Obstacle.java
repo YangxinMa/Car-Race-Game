@@ -11,6 +11,7 @@ public class Obstacle extends Cell{
         return point;
     }
 
+    //    Ref： Based on our CMPT 213 Assignment to modify
     public void teleport(Map map){
         int height = map.getHeight();
         int width = map.getWidth();

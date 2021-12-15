@@ -78,6 +78,8 @@ public class Game {
             score.teleport(map);
         }
     }
+
+    //    Ref： Based on our CMPT 213 Assignment to modify
     public boolean CarCrash(){
         if(player.getColumn() == 0
                 || player.getColumn() == map.getWidth() - 1){
@@ -97,6 +99,7 @@ public class Game {
         return true;
     }
 
+    //    Ref： Based on our CMPT 213 Assignment to modify
     public boolean canMoveOrNot(String c, Car player)
     {
         if(c.length() > 1)

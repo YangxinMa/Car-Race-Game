@@ -1,5 +1,7 @@
 "use strict";
 
+// Ref: Based on our CMPT 213 Assignment to develop and add more feature
+
 const gameObj = new Vue({
     el: "#gameApp",
     data: {
@@ -52,6 +54,7 @@ const gameObj = new Vue({
     }
 });
 
+// Ref： Based on our CMPT 213 Assignment to modify
 window.addEventListener("keydown", function(e) {
     switch(e.keyCode) {
         case 37: sendMove("MOVE_LEFT"); break;
@@ -91,6 +94,7 @@ function initTable() {
     }, 100)
 }
 
+// Ref： Based on our CMPT 213 Assignment code to modify
 function createNewGame() {
     axios.post('/game', {}).then(function (response) {
             gameObj.game = response.data;
@@ -101,6 +105,7 @@ function createNewGame() {
         });
 }
 
+// Ref： Based on our CMPT 213 Assignment code to modify
 function loadGame() {
     axios.get('/game/' + gameObj.game.gameId, {}).then(function (response) {
             console.log(response);
@@ -109,6 +114,8 @@ function loadGame() {
             console.log(error);
         });
 }
+
+// Ref： Based on our CMPT 213 Assignment code to modify
 function loadGameBoard() {
     axios.get('/game/' + gameObj.game.gameId + "/board", {}).then(function (response) {
             console.log(response);
@@ -118,6 +125,7 @@ function loadGameBoard() {
         });
 }
 
+// Ref： Based on our CMPT 213 Assignment code to modify
 function sendMoveCars() {
     if (gameObj.game.isGameLost || gameObj.game.stopByUser) {
         console.log("Stop all the cars.");
@@ -136,6 +144,7 @@ function sendMoveCars() {
         });
 }
 
+// Ref： Based on our CMPT 213 Assignment code to modify
 function sendMove(direction) {
     if (!gameObj.moveFlag) {
         console.log("Not player's turn yet!");

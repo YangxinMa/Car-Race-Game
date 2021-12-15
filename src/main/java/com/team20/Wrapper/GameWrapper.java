@@ -5,6 +5,10 @@ import com.team20.GameLogic.gameMechanics.Game;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Ref： Based on our CMPT 213 Assignment to develop and adjust the details to fix out project
+ */
+
 public class GameWrapper {
     public int gameId;
     public boolean isGameLost;

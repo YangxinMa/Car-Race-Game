@@ -5,6 +5,10 @@ import com.team20.GameLogic.gameMechanics.OppositeCar;
 
 import java.util.List;
 
+/**
+ *  Ref： Based on our CMPT 213 Assignment to develop and adjust the details to fix out project
+ */
+
 public class BoardWrapper {
     public int boardWidth;
     public int boardHeight;

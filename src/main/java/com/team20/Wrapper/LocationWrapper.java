@@ -3,6 +3,10 @@ package com.team20.Wrapper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Ref： Based on our CMPT 213 Assignment to develop and adjust the details to fix out project
+ */
+
 public class LocationWrapper {
     public int x;
     public int y;

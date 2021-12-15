@@ -3,6 +3,8 @@
     This project is a single-player car parkour rank web game, and players control a racing car to avoid oncoming obstacles on the track.
     Players do not need to control the accelerations but the moving directions of the car. 
     During the game, players get scores by touching gold coins on the track. With more scores, the player will rank higher on the leaderboard.
+    
+    This project is based on our CMPT 213 assignment to develop, we use the similar game modules but modify the game logic and add more features.
 ```
 
 ### How to play
@@ -50,4 +52,5 @@
    Bootstrap: https://getbootstrap.com/docs/4.0/examples/
    Springboot Tutorial: https://www.bilibili.com/video/BV1PE411i7CV?from=search&seid=11513155705726910520&spm_id_from=333.337.0.0
    MySQL Tutorial: https://www.bilibili.com/video/BV1NJ411J79W?p=1
+   CMPT213 Assignment: https://csil-git1.cs.surrey.sfu.ca/lianglil/cmpt213-assigment-ref.git
 ```
